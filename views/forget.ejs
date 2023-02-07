@@ -1,0 +1,72 @@
+forget.ejs
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Register App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script type="text/javascript">
+        $(document).ready(() => {
+
+            $("#form2").submit((event) => {
+
+                event.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/forgetpass',
+                    data: $('#form2').serialize(),
+                    dataType: "json",
+                    success: (response) => {
+                        //alert("a");
+                        //console.log(response.Success);
+                        $('#form2')[0].reset();
+                        //alert("abc");
+                        document.getElementById("check").innerHTML = response.Success;
+
+                        setTimeout(() => {
+                            document.getElementById("check").innerHTML = "";
+                        }, 3000);
+                        if (response.Success == "Password changed!") {
+                            document.getElementById("aa").click();
+                        };
+                    },
+                    error: () => {}
+                })
+            });
+
+        });
+    </script>
+    <style>
+        .form-control {
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="col-md-4 col-md-offset-4 form-card">
+            <div>
+                <h1 style="background-color: grey;background: rgba(100, 181, 181, 0.651);color: white;width:550px;height:57.5px;  border: 5px solid rgb(8, 31, 8);margin-top:35%; margin-left:17px;"><b>Login</b></h1>
+            </div>
+            <div class="form-group" style="background-color: grey;background: rgba(100, 181, 181, 0.651);color: white; width:550px; border: 5px solid rgb(8, 31, 8);margin-left:17px; ">
+                <br>
+                <form id="form2" method="post"><input type="text" name="email" placeholder="E-mail" required="" class="form-control"><br /><input type="password" name="password" placeholder="Password" required="" class="form-control"><br /><input type="password" name="passwordConf"
+                        placeholder="Confirm Password" required="" class="form-control"><br /><input type="submit" value="Change" class="btn btn-success"></form><br>
+            </div>
+            <div class="mssg bg-danger"><span id="check"></span></div>
+            <div id="LangTable">
+                <a href="/login" id="aa"></a>
+            </div>
+            <div id="LangTable" style="background-color: grey;background: rgba(233, 108, 55, 0.651);color: white; width:550px; border: 5px solid rgb(8, 31, 8);margin-left:17px;"><span>Go back to </span><a href="/">Register</a>or <a href="/login">Login</a></div>
+        </div>
+    </center>
+</body>
+
+</html>

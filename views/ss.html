@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+    </script>
+    <title>N236 Dhruvi Sethi</title>
+    <style>
+        body {
+            margin-top: 7%;
+            background-color: lightblue;
+            color: white;
+            font-size: large;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        h1 {
+            font-family: 'Tangerine', serif;
+            color: white;
+            font-size: 70px;
+        }
+        
+        table {
+            /* border: 2px solid black; */
+            border-radius: 30px;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            margin: 50px;
+            padding: 50px;
+            margin-top: 5px;
+        }
+        
+        tr,
+        td {
+            /* border: 2px solid lightblue; */
+            /* border-radius: 10px; */
+            align-items: center;
+            justify-content: center;
+            font-size: 30;
+            font-weight: bold;
+            vertical-align: middle;
+            margin: 15px 40px;
+            padding: 15px 40px;
+        }
+        
+        span {
+            margin-right: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <div ng-app="cart" ng-controller="MyCtrl">
+        <center>
+            <h1>Services</h1>
+            <h3>DHRUVI SETHI N236</h3>
+            <table width="45%">
+                <tr>
+                    <td style="background-color:deeppink" ng-click="click_300()" style="cursor: pointer;" ng-style="color"> Web Dev<span style="float: right; margin-right: 15px;"> $300.00</span></td>
+                </tr>
+                <tr>
+                    <td style="background-color:deeppink" ng-click="click_400()" style="cursor: pointer;" ng-style="color1">Design <span style="float: right; margin-right: 15px;"> $400.00</span></td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:deeppink" ng-click="click_250()" style="cursor: pointer;" ng-style="color2">Integration <span style="float: right; margin-right: 15px;"> $250.00</span></td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:deeppink" ng-click="click_220()" style="cursor: pointer;" ng-style="color3">Training <span style="float: right; margin-right: 15px;"> $220.00</span></td>
+                </tr>
+                <tr>
+                    <td>Total: <span style="float: right; margin-right: 15px;"> ${{sum}}.00 </span></td>
+                </tr>
+
+            </table>
+
+        </center>
+    </div>
+    <script>
+        app = angular.module("cart", []);
+        app.controller("MyCtrl", function($scope) {
+            $scope.sum = 0;
+            $scope.flag_300 = 0; //0 if not added, 1 if added
+            $scope.flag_400 = 0; //0 if not added, 1 if added
+            $scope.flag_250 = 0; //0 if not added, 1 if added
+            $scope.flag_220 = 0; //0 if not added, 1 if added
+
+            $scope.click_300 = function() {
+                if ($scope.flag_300 == 0) {
+                    $scope.sum = $scope.sum + 300;
+                    $scope.flag_300 = 1;
+                    $scope.color = {
+                        'background-color': 'yellowgreen'
+                    }
+                } else if ($scope.flag_300 == 1) {
+                    $scope.sum = $scope.sum - 300;
+                    $scope.flag_300 = 0;
+                    $scope.color = {
+                        'background-color': 'deeppink'
+                    }
+
+                }
+            };
+            $scope.click_400 = function() {
+                if ($scope.flag_400 == 0) {
+                    $scope.sum = $scope.sum + 400;
+                    $scope.flag_400 = 1;
+                    $scope.color1 = {
+                        'background-color': 'yellowgreen'
+                    }
+
+                } else if ($scope.flag_400 == 1) {
+                    $scope.sum = $scope.sum - 400;
+                    $scope.flag_400 = 0;
+                    $scope.color1 = {
+                        'background-color': 'deeppink'
+                    }
+
+                }
+            };
+            $scope.click_250 = function() {
+                if ($scope.flag_250 == 0) {
+                    $scope.sum = $scope.sum + 250;
+                    $scope.flag_250 = 1;
+                    $scope.color2 = {
+                        'background-color': 'yellowgreen'
+                    }
+
+                } else if ($scope.flag_250 == 1) {
+                    $scope.sum = $scope.sum - 250;
+                    $scope.flag_250 = 0;
+                    $scope.color2 = {
+                        'background-color': 'deeppink'
+                    }
+
+                }
+            };
+            $scope.click_220 = function() {
+                if ($scope.flag_220 == 0) {
+                    $scope.sum = $scope.sum + 220;
+                    $scope.flag_220 = 1;
+                    $scope.color3 = {
+                        'background-color': 'yellowgreen'
+                    }
+
+                } else if ($scope.flag_220 == 1) {
+                    $scope.sum = $scope.sum - 220;
+                    $scope.flag_220 = 0;
+                    $scope.color3 = {
+                        'background-color': 'deeppink'
+                    }
+
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>

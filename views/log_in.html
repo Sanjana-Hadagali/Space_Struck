@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>AngularJS Form Validation Log-in page</title>
+</head>
+<style>
+    span {
+        color: rgb(242, 255, 0);
+    }
+    
+    body {
+        color: white;
+        background-color: black;
+    }
+    
+    table,
+    tr,
+    td,
+    th {
+        border-width: 2px;
+        border-color: lightpink;
+        border-style: outset;
+        border-collapse: collapse;
+        color: black;
+        padding: 10px 10px 10px 10px;
+        background-color: white;
+    }
+    
+    th {
+        color: black;
+        background-color: lightcyan;
+    }
+    
+    input {
+        padding: 4px 4px 4px 4px;
+        border-radius: 10px;
+        width: 45%;
+        background-color: rgb(75, 72, 73);
+    }
+    
+    #theform.ng-pristine {
+        background-color: rgb(75, 72, 73);
+        width: 45%;
+        margin-left: 350px;
+        border: 4px solid black;
+    }
+    
+    #theform.ng-dirty {
+        background-color: rgb(75, 72, 73);
+        width: 45%;
+        margin-left: 350px;
+        border: 4px solid black;
+    }
+    
+    input.ng-invalid {
+        background-color: rgb(245, 77, 77);
+        color: rgb(255, 242, 0);
+    }
+    
+    input.ng-valid {
+        background-color: lightgreen;
+        color: rgb(0, 0, 0);
+    }
+    
+    button {
+        transition: all 1s;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 15%;
+        height: 12%;
+        padding: 10px 10px 10px 10px;
+        border-radius: 10px;
+    }
+    
+    button:hover {
+        transition: all 1s;
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+    }
+    
+    h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    h3 {
+        color: white;
+        margin-left: 15%;
+        width: 420px;
+        height: 45px;
+        background-color: rgb(245, 74, 120);
+    }
+    
+    caption {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: medium;
+        font-weight: 900;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body ng-app="">
+    <div>
+        <form action="" align="center" name="myform" id="theform" autocomplete="off">
+            <h1> Sign-in Form</h1>
+            <label for="">First Name<span>*</span></label> <br>
+            <input type="text" required ng-minlength="3" ng-maxlength="18" name="myfirstname" ng-model="myfirstname"> <br>
+            <span ng-show="myform.myfirstname.$touched">
+            <span ng-show="myform.myfirstname.$error.required">
+               <h3> This field is required.</h3>   
+            </span>
+            <span ng-show="myform.myfirstname.$error.minlength">
+                <h3>  Please enter a bigger First Name.</h3> 
+            </span>
+            <span ng-show="myform.myfirstname.$error.maxlength"> 
+                <h3>  Please enter a smaller First Name.</h3>
+            </span>
+            </span>
+            <br>
+            <label for="">Last Name</label><br>
+            <input type="text" ng-maxlength="18" name="mylastname" ng-model="mylastname" required>
+            <span ng-show="myform.mylastname.$touched">
+                <span ng-show="myform.mylastname.$error.required">
+                    <h3> This field is required.</h3> 
+                </span>
+            <span ng-show="myform.mylastname.$error.maxlength"> 
+                    <h3> Please enter a smaller Last Name. </h3>
+                </span>
+            </span>
+            <br><br>
+            <label for="">Gender</label><span>*</span>
+            <input type="radio" name="gender" style="width:5%;">Male</input><br>
+            <input type="radio" name="gender" style="width:5%;margin-left:13.5%">Female</input><br><br>
+
+            <label for="">Email<span>*</span></label><br>
+            <input type="email" required name="mymail" ng-model="mymail">
+            <span ng-show="myform.mymail.$touched">
+            <span ng-show="!myform.mymail.$valid"> 
+                <h3>  Please Enter a valid email ID.</h3>
+            </span>
+            </span>
+            <span>
+                <label for="">AGE<span>*</span></label><br>
+            <input type="text" name="myage"></input>
+            </span>
+            <span>
+                <label for>
+        </span>
+            <br><br>
+            <label for="">Password<span>*</span></label><br>
+            <input type="password" ng-minlength="8" required name="mypassword" ng-model="mypassword">
+            <span ng-show="myform.mypassword.$touched">
+            <span ng-show="myform.mypassword.$error.minlength">
+                <h3> Please Enter a password which is more than 8 characters.</h3>
+            </span>
+            <span ng-show="myform.mypassword.$error.required">
+                <h3>  Please Enter a password.</h3>
+            </span>
+            </span>
+            <br><br>
+            <label for="">Phone Number<span>*</span></label><br>
+            <input type="number" ng-minlength="10" ng-maxlength="10" required name="myphonenumber" ng-model="myphonenumber">
+            <span ng-show="myform.myphonenumber.$touched">
+            <span ng-show="myform.myphonenumber.$error.minlength">
+                <br>
+                <h3>Please Enter a 10-digit long phone number.</h3>
+                <br>
+            </span>
+            <span ng-show="myform.myphonenumber.$error.maxlength">
+                <br>
+                <h3> Please Enter a 10-digit long phone number.</h3>
+                <br>
+            </span>
+            <span ng-show="myform.myphonenumber.$error.required">
+                <br>
+                <h3>Please Enter a 10-digit long phone number.</h3>
+                <br>
+            </span>
+            </span>
+            <br>
+            <button ng-disabled="!myform.$valid"> Done </button>
+            <button onClick="window.location.reload();">X Cancel</button>
+        </form>
+        <!-- <table align="center">
+        <caption style="color:white">Registered Students</caption> 
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+        </tr>
+        <tr>
+            <td>{{myfirstname}}</td>
+            <td>{{mylastname}}</td>
+            <td>{{mymail}}</td>
+            <td>{{myphonenumber}}</td>
+        </tr>
+    </table> -->
+    </div>
+</body>
+
+</html>
